@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>车站管理</title>
+		<link rel="stylesheet" href="./layui/css/layui.css">
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="./layui/layui.all.js"></script>
+		<script src="./js/jquery-1.7.1.min.js"></script>
+		<script src="./js/vue.js"></script>
+		<script>
+			window.onload=updateTable;
+			function updateTable(){    
+				$.ajax({
+					url:"http://localhost:8080/station/queryAll",
+					type: "get",
+					//async:true,
+					success: function(result) {
+						lineTbody.lines = result.data;
+					}})
+			}
+		</script>
+	</head>
+	<body>
+		<button type="button" class="layui-btn">
+		  <i class="layui-icon">&#xe608;</i> 添加
+		</button>
+		<table class="layui-table">
+		  <colgroup>
+		    <col width="100">
+		    <col width="250">
+		    <col>
+		  </colgroup>
+		  <thead>
+		    <tr>
+		      <th>车站名称</th>
+		      <th>创建时间</th>
+		      <th>操作</th>
+		    </tr> 
+		  </thead>
+		  <tbody id="lineTbody">
+		    <tr v-for="line in lines">
+		      <td>{{ line.lineName }}</td>
+		      <td>{{ line.createTime }}</td>
+		      <td>
+		      	<button type="button" class="layui-btn">删除</button>
+		      	<button type="button" class="layui-btn">修改</button>
+		      </td>
+		    </tr>
+		  </tbody>
+	    <script>
+	    	var lineTbody = new Vue({
+			  el: '#lineTbody',
+			  data: {
+			    lines: []
+			  }
+			})
+	    </script>
+		</table>
+	</body>
+</html>

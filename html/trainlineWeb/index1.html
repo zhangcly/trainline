@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>地铁线路管理</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+		<style type="text/css">
+			.wave{
+			  position:absolute;
+			  top:calc((100% - 30px)/2);
+			  left:calc((100% - 30px)/2);
+			  width:30px;
+			  height:30px;
+			  border-radius:300px;
+			}
+			.wave0{
+			  background:#f00;
+			  z-index:2;
+			  background-size:auto 106%;
+			  animation:w 1s forwards;
+			}
+			.wave1{
+			  background:#d00;
+			  z-index:3;
+			  animation:w 1s .2s forwards;
+			}
+			.wave2{
+			  background:#b00;
+			  z-index:4;
+			  animation:w 1s .4s forwards;
+			}
+			.wave3{
+			  background:#900;
+			  z-index:5;
+			  animation:w 1s .5s forwards;
+			}
+			.wave4{
+			  background:#700;
+			  z-index:6;
+			  animation:w 1s .8s forwards;
+			}
+			.wave5{
+			  background:#500;
+			  z-index:7;
+			  animation:w 1s 1s forwards;
+			}
+			@keyframes w{
+			  0%{
+			    top:calc((100% - 30px)/2);
+			    left:calc((100% - 30px)/2);
+			    width:30px;
+			    height:30px;
+			  }
+			  100%{
+			    top:calc((100% - 300px)/2);
+			    left:calc((100% - 300px)/2);
+			    width:300px;
+			    height:300px;
+			  }
+			}
+		</style>
+		<script type="application/javascript">
+			window.onload= function(){
+				var dragObj = document.getElementById("div1");
+		        dragObj.style.left = "0px";
+		        dragObj.style.top = "0px";
+		
+		        var mouseX, mouseY, objX, objY;
+		        var dragging = false;
+		
+		        dragObj.onmousedown = function (event) {
+		            event = event || window.event;
+		
+		            dragging = true;
+		            dragObj.style.position = "relative";
+		
+		
+		            mouseX = event.clientX;
+		            mouseY = event.clientY;
+		            objX = parseInt(dragObj.style.left);
+		            objY = parseInt(dragObj.style.top);
+		        }
+		
+		        document.onmousemove = function (event) {
+		            event = event || window.event;
+		            if (dragging) {
+		            	//现在的鼠标位置减去原本的鼠标位置加上原本的div的位置
+		                dragObj.style.left = parseInt(event.clientX - mouseX + objX) + "px";
+		                dragObj.style.top = parseInt(event.clientY - mouseY + objY) + "px";
+		            }
+		
+		        }
+		
+		        document.onmouseup = function () {
+		            dragging = false;
+		        }
+			}
+			
+		</script>
+	</head>
+	<body>
+		<!--
+		<div class="wave wave5">
+			<span>添加站</span>
+		</div>
+		<div class="wave wave4"></div>
+		<div class="wave wave3"></div>
+		<div class="wave wave2"></div>
+		<div class="wave wave1"></div>
+		<div class="wave wave0"></div>-->
+		 <body>
+  
+		<div id="div1" style="width: 40px;height: 40px;background-color: red;position: relative;left: 70px;top: 50px;">
+			<!--<span>station1</span>
+			<div>
+				
+			</div>-->
+		</div>
+		  <!--画板-->
+   <canvas id="canvas" style="background-color: black;">您当前的版本不支持       </canvas>
+
+   <script type="text/javascript">
+
+       // 拿到画板
+       var canvas = document.getElementById('canvas');
+       canvas.width = 1000;
+       canvas.height = 1000;
+
+       // 拿到上下文
+       var context = canvas.getContext('2d');
+       // 设置线条的颜色
+       context.strokeStyle = 'red';
+       // 设置线条的宽度
+       context.lineWidth = 5;
+
+       // 绘制直线
+       context.beginPath();
+      // 起点
+       context.moveTo(200, 200);
+      // 终点
+       context.lineTo(500, 200);
+       context.closePath();
+       context.stroke();
+    
+   // 绘制弧线
+    context.beginPath();
+   /*
+   * params
+   * 圆心x坐标
+   * 圆心y坐标
+   * 半径
+   * 起始角度
+   * 结束角度
+   * 方向，true 逆时针   false 顺时针  默认false，不写表示false
+   */ 
+    context.arc(200,200,100,0,Math.PI/2,false);
+    context.closePath();
+    context.stroke();
+
+    context.strokeStyle = 'red';
+    context.arc(200,200,100,0,Math.PI/2, true);
+    context.closePath();
+    context.stroke();
+   </script>
+	</body>
+</html>

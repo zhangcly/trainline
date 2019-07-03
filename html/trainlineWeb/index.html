@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>地铁线路管理</title>
+		<script src="js/jtopo-0.4.8-min.js"></script>
+		<script src="js/toolbar.js"></script>
+		<script src="js/jquery-1.7.1.min.js"></script>
+		<link rel="stylesheet" href="./layui/css/layui.css">
+		<script src="./layui/layui.all.js"></script>
+		<script type="application/javascript">
+			window.onload = function(){            
+				var canvas = document.getElementById('canvas');
+	            var stage = new JTopo.Stage(canvas);
+	            //显示工具栏
+	            showJTopoToobar(stage);
+	            var scene = new JTopo.Scene(stage);
+	            scene.background = './img/8800276_184927469000_2.png';
+			}
+			
+		</script>
+	</head>
+	<body>
+		<ul class="layui-nav layui-nav-tree layui-nav-side">
+		  <li class="layui-nav-item layui-nav-itemed">
+		    <a href="javascript:;">默认展开</a>
+		    <dl class="layui-nav-child">
+		      <dd><a href="javascript:;">选项1</a></dd>
+		      <dd><a href="javascript:;">选项2</a></dd>
+		      <dd><a href="index.html">跳转</a></dd>
+		    </dl>
+		  </li>
+		  <li class="layui-nav-item">
+		    <a href="javascript:;">解决方案</a>
+		    <dl class="layui-nav-child">
+		      <dd><a href="">移动模块</a></dd>
+		      <dd><a href="">后台模版</a></dd>
+		      <dd><a href="">电商平台</a></dd>
+		    </dl>
+		  </li>
+		  <li class="layui-nav-item"><a href="">产品</a></li>
+		  <li class="layui-nav-item"><a href="">大数据</a></li>
+		</ul>
+		<div class="layui-body layui-tab-content site-demo site-demo-body"id="content">
+			<canvas id="canvas" width="1000" height="1000"></canvas>
+		</div>
+	</body>
+</html>
